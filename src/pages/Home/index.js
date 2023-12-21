@@ -35,7 +35,7 @@ const Page = () => {
           </ServiceCard>
           <ServiceCard imageSrc="/images/hall-expo.png">
             <h3>Conférences</h3>
-            77 events vous propose d’organiser votre évènement, quelle que soit
+            724 events vous propose d’organiser votre évènement, quelle que soit
             sa taille, en s’adaptant à votre demande et à vos demandes. En tant
             que spécialistes de l’évènementiel, nous saurons trouver le lieu
             parfait ainsi que des solutions inédites pour capter votre audience
@@ -128,7 +128,7 @@ const Page = () => {
         <h3>Contactez-nous</h3>
         <address>45 avenue de la République, 75000 Paris</address>
         <div>01 23 45 67 89</div>
-        <div>contact@77events.com</div>
+        <div>contact@724events.com</div>
         <div>
           <a href="#twitch">
             <Icon name="twitch" />
