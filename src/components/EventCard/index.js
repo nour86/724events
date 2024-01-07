@@ -42,7 +42,7 @@ EventCard.propTypes = {
 EventCard.defaultProps = {
   imageAlt: "image",
   small: false,
-  dataTestId:""
+  dataTestId:"card-testid"
 }
 
 export default EventCard;
