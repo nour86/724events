@@ -27,18 +27,23 @@ const data = {
 };
 
 describe("When slider is created", () => {
+  
   it("a list card is displayed", async () => {
-    window.console.error = jest.fn();
     api.loadData = jest.fn().mockReturnValue(data);
+    window.console.error = jest.fn();
     render(
       <DataProvider>
         <Slider />
       </DataProvider>
     );
-    await screen.findByText("World economic forum");
-    await screen.findByText("janvier");
-    await screen.findByText(
-      "Oeuvre à la coopération entre le secteur public et le privé."
-    );
+    const titleDisplayed= await screen.findByText("World economic forum");
+    expect(titleDisplayed).toBeInTheDocument();
+// mock ne fonctionne pas
+    const dateDisplayed= await screen.findByText("janvier"); 
+    expect(dateDisplayed).toBeInTheDocument();
+
+    const infoDisplayed= await screen.findByText("Oeuvre à la coopération entre le secteur public et le privé.");
+    expect(infoDisplayed).toBeInTheDocument();
   });
+
 });

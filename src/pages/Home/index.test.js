@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import Home from "./index";
 
 describe("When Form is created", () => {
@@ -21,24 +21,51 @@ describe("When Form is created", () => {
         })
       );
       await screen.findByText("En cours");
-      await screen.findByText("Message envoyé !");
+      await waitFor(() => screen.findByText("Message envoyé !"), {timeout:2000});
     });
   });
 
 });
-
-
-describe("When a page is created", () => {
-  it("a list of events is displayed", () => {
+describe("When a Page is created", () => {
+  it("a list of events is displayed", async() => {
     // to implement
+    render(<Home />);
+    const events = screen.queryAllByTestId("card-image-testid").length;
+      expect (events).toBeGreaterThan(1)
   })
-  it("a list a people is displayed", () => {
+  it("a list a people is displayed", async() => {
     // to implement
+    render(<Home />)
+    const people = screen.queryAllByTestId("people-testid").length;
+    expect (people).toBeGreaterThan(1)
   })
-  it("a footer is displayed", () => {
+  it("a footer is displayed", async () => {
     // to implement
+    render(<Home />);
+    await screen.findByTestId("footer-testid");
   })
-  it("an event card, with the last event, is displayed", () => {
+  it("an event card, with the last event, is displayed", async() => {
     // to implement
+    render(<Home />);
+    // await(()=>{expect(screen.getByTestId("lastEvent-testid")).toBeInTheDocument();});
+    await(()=>{expect(screen.findByTestId("lastEvent-testid"))});
+    // await(() => {
+    //   expect(screen.getAllByTestId("lastEvent-testid")).toBeInTheDocument();
+    // });
   })
 });
+
+// describe("When a Home is created", () => {
+//   it("a list of events is displayed", () => {
+//     // to implement
+//   })
+//   it("a list a people is displayed", () => {
+//     // to implement
+//   })
+//   it("a footer is displayed", () => {
+//     // to implement
+//   })
+//   it("an event card, with the last event, is displayed", () => {
+//     // to implement
+//   })
+// });

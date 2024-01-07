@@ -9,6 +9,7 @@ import {
 
 const DataContext = createContext({});
 
+
 export const api = {
   loadData: async () => {
     const json = await fetch("/events.json");
