@@ -6,7 +6,7 @@ import { api, DataProvider } from '../../contexts/DataContext'
 const data = {
     focus: [
         {
-            title: 'World economic forum',
+            title: 'World aconomic forum',
             description:
                 'Oeuvre à la coopération entre le secteur public et le privé.',
             date: '2022-02-29T20:28:45.744Z',
@@ -39,14 +39,22 @@ describe('When slider is created', () => {
             )
         })
 
-        const titleDisplayed = await screen.findByText('World economic forum')
+        // testing a different field for each object supposed to render
+
+        // title :
+
+        const titleDisplayed = await screen.findByText('World aconomic forum')
         expect(titleDisplayed).toBeInTheDocument()
-        // mock ne fonctionne pas
-        const dateDisplayed = await screen.findByText('février')
+
+        // date :
+
+        const dateDisplayed = await screen.findByText('janvier')
         expect(dateDisplayed).toBeInTheDocument()
 
+        // description :
+
         const infoDisplayed = await screen.findByText(
-            'Oeuvre à la coopération entre le secteur public et le privé.'
+            'Evenement mondial autour de la ferme'
         )
         expect(infoDisplayed).toBeInTheDocument()
     })
