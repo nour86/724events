@@ -26,16 +26,18 @@ describe('When a data context is created', () => {
                 api.loadData = jest
                     .fn()
                     .mockRejectedValue('error on calling events')
+
+                const Component = () => {
+                    const { error } = useData()
+                    return <div>{error}</div>
+                }
+
+                render(
+                    <DataProvider>
+                        <Component />
+                    </DataProvider>
+                )
             })
-            const Component = () => {
-                const { error } = useData()
-                return <div>{error}</div>
-            }
-            render(
-                <DataProvider>
-                    <Component />
-                </DataProvider>
-            )
             const dataDisplayed = await screen.findByText(
                 'error on calling events'
             )

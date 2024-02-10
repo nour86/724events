@@ -10,6 +10,14 @@ const mockContactApi = () =>
     })
 
 const Form = ({ onSuccess, onError }) => {
+    const defaultFormValues = {
+        nom: '',
+        prenom: '',
+        personel: '',
+        email: '',
+        message: '',
+    }
+    const [formValues, setFormValues] = useState(defaultFormValues)
     const [sending, setSending] = useState(false)
     const sendContact = useCallback(
         async (evt) => {
@@ -19,6 +27,7 @@ const Form = ({ onSuccess, onError }) => {
             try {
                 await mockContactApi()
                 setSending(false)
+                setFormValues(defaultFormValues)
                 //  OnSuccess => affiche la Modal "Message Envoyé"
 
                 onSuccess()
@@ -33,16 +42,53 @@ const Form = ({ onSuccess, onError }) => {
         <form onSubmit={sendContact}>
             <div className="row">
                 <div className="col">
-                    <Field placeholder="" label="Nom" />
-                    <Field placeholder="" label="Prénom" />
+                    <Field
+                        placeholder=""
+                        label="Nom"
+                        value={formValues.nom}
+                        onChange={(e) =>
+                            setFormValues({
+                                ...formValues,
+                                nom: e.target.value,
+                            })
+                        }
+                    />
+                    <Field
+                        placeholder=""
+                        label="Prénom"
+                        value={formValues.prenom}
+                        onChange={(e) =>
+                            setFormValues({
+                                ...formValues,
+                                prenom: e.target.value,
+                            })
+                        }
+                    />
                     <Select
                         selection={['Personel', 'Entreprise']}
-                        onChange={() => null}
+                        // onChange={() => null}
+                        onChange={(value) => {
+                            setFormValues({
+                                ...formValues,
+                                personel: value,
+                            })
+                        }}
+                        value={formValues.personel}
                         label="Personel / Entreprise"
                         type="large"
                         titleEmpty
                     />
-                    <Field placeholder="" label="Email" />
+                    <Field
+                        placeholder=""
+                        label="Email"
+                        onChange={(e) => {
+                            setFormValues({
+                                ...formValues,
+                                email: e.target.value,
+                            })
+                        }}
+                        value={formValues.email}
+                    />
                     <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
                         {sending ? 'En cours' : 'Envoyer'}
                     </Button>
@@ -52,6 +98,13 @@ const Form = ({ onSuccess, onError }) => {
                         placeholder="message"
                         label="Message"
                         type={FIELD_TYPES.TEXTAREA}
+                        onChange={(e) => {
+                            setFormValues({
+                                ...formValues,
+                                message: e.target.value,
+                            })
+                        }}
+                        value={formValues.message}
                     />
                 </div>
             </div>

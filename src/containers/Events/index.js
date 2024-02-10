@@ -33,6 +33,7 @@ const EventList = () => {
     }
     const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE) + 1
     const typeList = new Set(data?.events.map((event) => event.type))
+    const arrayList = Array.from(typeList)
     return (
         <>
             {error && <div>An error occured</div>}
@@ -42,7 +43,7 @@ const EventList = () => {
                 <>
                     <h3 className="SelectTitle">Catégories</h3>
                     <Select
-                        selection={Array.from(typeList)}
+                        selection={arrayList}
                         onChange={(value) =>
                             value ? changeType(value) : changeType(null)
                         }
