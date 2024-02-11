@@ -15,7 +15,7 @@ const Form = ({ onSuccess, onError }) => {
         prenom: '',
         personel: '',
         email: '',
-        message: '',
+        message: 'message',
     }
     const [formValues, setFormValues] = useState(defaultFormValues)
     const [sending, setSending] = useState(false)
@@ -27,9 +27,9 @@ const Form = ({ onSuccess, onError }) => {
             try {
                 await mockContactApi()
                 setSending(false)
+                // vide les champs du formulaire
                 setFormValues(defaultFormValues)
                 //  OnSuccess => affiche la Modal "Message Envoyé"
-
                 onSuccess()
             } catch (err) {
                 setSending(false)
